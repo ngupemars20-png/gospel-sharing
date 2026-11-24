@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "gospel-sharing-v7";
+const CACHE_NAME = "gospel-sharing-v8";
 
 const CORE = [
   "./",
@@ -61,7 +61,6 @@ self.addEventListener("fetch", event => {
         }
 
         return response;
-
       } catch (error) {
         if (request.mode === "navigate") {
           return await caches.match("./index.html");
@@ -72,3 +71,4 @@ self.addEventListener("fetch", event => {
     })()
   );
 });
+
