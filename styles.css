@@ -1,0 +1,122 @@
+*{box-sizing:border-box} :root{--green:#214b37;--green2:#2d6348;--cream:#f6f1e5;--paper:#fffdf7;--gold:#d6b66b;--ink:#2b302b;--muted:#68736a}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:84px}
+.topbar{background:var(--green);color:#fff;padding:18px clamp(16px,4vw,42px);display:flex;align-items:center;gap:14px}
+.brand-mark{width:42px;height:42px;border:1px solid #d8c58f;border-radius:50%;display:grid;place-items:center;color:#e6d19a;font-size:25px}
+.topbar h1{font:500 clamp(14px,2vw,18px) Georgia,serif;margin:3px 0 0}.eyebrow{font-size:11px;letter-spacing:1.6px;font-weight:800;margin:0;color:#987a3d}
+.topbar .eyebrow{color:#e2d3a7}.offline-pill{margin-left:auto;border:1px solid #8aaf92;border-radius:30px;padding:7px 10px;font-size:10px;letter-spacing:.7px;white-space:nowrap}
+main{max-width:960px;margin:0 auto;padding:22px 16px 36px}.view{display:none}.view.active{display:block}
+.hero{background:var(--paper);border-radius:20px;overflow:hidden;box-shadow:0 5px 20px #30241112}
+.hero-art{background:#e9dfc9}.hero-art img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.hero-copy{padding:22px 24px 24px}.hero-copy h2{font:600 clamp(25px,4vw,36px) Georgia,serif;color:var(--green);margin:8px 0}.hero-copy p:last-child{color:var(--muted);margin-bottom:0;line-height:1.6}
+.sunday-panel{margin-top:18px;padding:20px;border-radius:16px;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:18px}.sunday-panel .eyebrow{color:#e4ce94}.sunday-panel h2{margin:6px 0;font:600 23px Georgia,serif}.sunday-panel p:not(.eyebrow){margin:0;color:#e2e8df;line-height:1.5}
+.button{border:0;border-radius:10px;padding:12px 16px;font-weight:750;cursor:pointer}.button-gold{background:var(--gold);color:#302b20;white-space:nowrap}
+.home-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.nav-card{border:1px solid #e4dac5;background:var(--paper);border-radius:16px;text-align:left;padding:18px;display:flex;flex-direction:column;gap:9px;min-height:170px;color:var(--ink);cursor:pointer}.nav-card strong{font:600 19px Georgia,serif;color:var(--green)}.nav-card>span:not(.card-icon):not(.card-arrow){font-size:13px;color:var(--muted);line-height:1.4}.card-icon{font-size:25px}.card-arrow{font-size:13px;color:#8b6b2d;font-weight:750;margin-top:auto}
+.footer-motto{text-align:center;color:#786b51;font:italic 15px Georgia,serif;margin:24px 0 4px}
+.back-link{border:0;background:transparent;color:var(--green);font-weight:750;padding:6px 0 16px;cursor:pointer}.view>h2{font:600 clamp(25px,4vw,34px) Georgia,serif;color:var(--green);margin:7px 0}.intro{color:var(--muted);line-height:1.55;margin:0 0 18px}
+.content-list{display:grid;gap:12px}.content-card{background:var(--paper);border:1px solid #e6ddca;border-radius:14px;padding:17px 18px}.content-card h3{margin:0 0 10px;color:var(--green);font:600 20px Georgia,serif}.content-card p{line-height:1.55;margin:7px 0}.content-card ul{padding-left:22px;margin:8px 0}.content-card li{padding:3px 0;line-height:1.5}.content-note{background:#f2ead7;border-left:3px solid var(--gold);padding:10px 12px;border-radius:0 8px 8px 0;color:#5e523e;font-style:italic;margin-top:12px;line-height:1.5}
+.closing-note{background:#eee4d0;padding:16px;border-radius:12px;color:#5b4d37;font:italic 17px Georgia,serif;line-height:1.5;margin-top:18px}
+.date-label{display:block;font-weight:700;margin:18px 0 7px}.reading-card{background:var(--paper);border:1px solid #e6ddca;border-radius:14px;padding:18px;margin-top:14px;line-height:1.55}.reading-card h3{margin-top:0;color:var(--green)}input[type=date]{padding:12px;border:1px solid #cfc5b0;border-radius:9px;background:white;font:inherit;max-width:100%}.small-note{font-size:12px;color:var(--muted);line-height:1.5;margin-top:14px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fffdf8;border-top:1px solid #e2dacb;display:flex;justify-content:center;gap:clamp(8px,5vw,55px);padding:8px 8px max(8px,env(safe-area-inset-bottom));z-index:5}.bottom-item{border:0;background:transparent;color:#69736a;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:58px;cursor:pointer}.bottom-item span{font-size:19px}.bottom-item.selected{color:var(--green);font-weight:800}
+@media(max-width:650px){.home-grid{grid-template-columns:1fr}.nav-card{min-height:120px}.sunday-panel{align-items:flex-start;flex-direction:column}.button-gold{width:100%}.offline-pill{font-size:9px;padding:6px 8px}.hero-art svg{min-height:170px}}
+
+.reading-line{padding:10px 0;border-top:1px solid #eee5d4}.reading-line strong{color:#87672f;font-size:13px}.reading-line p{margin:4px 0 0;font:18px Georgia,serif;color:#263e30}
+
+/* Final layout refinement: make Sunday Readings the main home-screen focus */
+.hero-art img{height:150px;aspect-ratio:auto;object-fit:cover}
+.hero-copy{padding:12px 18px 14px}
+.hero-copy h2{font-size:clamp(21px,3vw,27px);margin:5px 0}
+.hero-copy p:last-child{font-size:13px;line-height:1.4}
+.sunday-panel{margin-top:14px;padding:27px 24px;min-height:190px;gap:22px}
+.sunday-panel h2{font-size:clamp(27px,4vw,34px)}
+.sunday-panel p:not(.eyebrow){font-size:16px;line-height:1.55}
+.sunday-panel .button-gold{padding:15px 20px;font-size:15px}
+.step-subtitle{font-style:italic;color:var(--muted);margin:0 0 8px}
+.step-afterwards{margin:10px 0 0;line-height:1.55}
+@media(max-width:650px){.hero-art img{height:125px}.sunday-panel{min-height:0;padding:22px 18px}.sunday-panel h2{font-size:27px}}
+
+
+/* Home-screen visual balance: give the crucifix and Bible more room */
+.hero-art img{height:260px;aspect-ratio:auto;object-fit:cover;object-position:center center}
+.sunday-panel{margin-top:12px;padding:12px 16px;min-height:0;gap:12px}
+.sunday-panel h2{font-size:clamp(21px,3vw,25px);margin:3px 0}
+.sunday-panel p:not(.eyebrow){font-size:13px;line-height:1.35}
+.sunday-panel .button-gold{padding:10px 14px;font-size:13px}
+@media(max-width:650px){
+  .hero-art img{height:225px}
+  .sunday-panel{padding:11px 14px;gap:9px}
+  .sunday-panel h2{font-size:23px}
+  .sunday-panel .button-gold{width:100%;padding:9px 12px}
+}
+
+/* Approved original compact home-page design (reference screenshot, 23 Nov 2026) */
+body{padding-bottom:0}
+.topbar{display:none}
+main{width:calc(100% - 24px);max-width:464px;margin:0 auto;padding:11px 0 24px}
+.hero{border-radius:12px;box-shadow:0 4px 16px #30241112}
+.hero-art img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:center center}
+.hero-copy{padding:10px 12px 12px}
+.hero-copy .eyebrow{font-size:7px;letter-spacing:.7px}
+.hero-copy h2{font-size:20px;margin:4px 0 6px}
+.hero-copy p:last-child{font-size:8px;line-height:1.45;margin:0}
+.sunday-panel{margin-top:9px;padding:10px;border-radius:9px;min-height:0;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:8px}
+.sunday-panel .eyebrow{font-size:7px;letter-spacing:.6px}
+.sunday-panel h2{font-size:14px;margin:2px 0}
+.sunday-panel p:not(.eyebrow){font-size:8px;line-height:1.35}
+.sunday-panel .button-gold{width:auto;padding:7px 9px;font-size:7px;border-radius:6px}
+.home-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:9px}
+.nav-card{min-width:0;min-height:86px;padding:9px;border-radius:9px;gap:4px}
+.card-icon{font-size:16px}
+.nav-card strong{font-size:11px;line-height:1.15}
+.nav-card>span:not(.card-icon):not(.card-arrow){font-size:7px;line-height:1.3}
+.card-arrow{font-size:7px}
+.footer-motto{font-size:8px;margin:10px 0 6px}
+.creator-credit{font-size:7px;margin:8px 0 4px;color:#53634f}
+.about-link{font-size:7px;padding:4px 0 8px}
+.bottom-nav{display:none}
+@media(max-width:380px){
+  main{width:calc(100% - 18px)}
+  .nav-card{padding:7px;min-height:82px}
+  .nav-card strong{font-size:10px}
+  .sunday-panel .button-gold{font-size:6px;padding:6px 7px}
+}
+/* Other app sections retain their existing full-width reading layout. */
+
+
+/* Sunday Reflections page; home-screen artwork and approved layout remain unchanged. */
+.reflections-home-link{display:flex;flex-direction:column;align-items:flex-start;gap:5px;width:100%;margin:10px 0 0;padding:11px 13px;border:1px solid #e4dac5;border-radius:9px;background:var(--paper);color:var(--green);font:700 13px Georgia,serif;text-align:left;cursor:pointer}
+.reflections-home-link span{font:normal 10px system-ui,sans-serif;color:var(--muted)}
+.reflection-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 16px;padding:10px 12px;background:#fffdf7;border:1px solid #e6ddca;border-radius:10px}
+.sync-status{font-size:12px;color:var(--muted);line-height:1.4}
+.reflection-toolbar .button{white-space:nowrap}
+.reflection-card h3{margin-bottom:8px}
+.reflection-scripture{font-weight:700;color:#8b6b2d;margin:0 0 12px!important}
+.reflection-body{white-space:pre-wrap;line-height:1.7!important}
+@media(max-width:420px){.reflection-toolbar{align-items:flex-start;flex-direction:column}.reflection-toolbar .button{width:100%}}
+/* Sunday Reflection Media */
+
+.reflection-media {
+  margin-top: 16px;
+}
+
+.reflection-image {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin: 10px 0;
+}
+
+.reflection-media audio,
+.reflection-media video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 8px 0;
+}
+
+.reflection-media video {
+  max-height: 420px;
+  background: #000;
+  border-radius: 12px;
+}

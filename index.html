@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#214b37">
+  <meta name="description" content="An offline guide for Catholic Sunday Gospel sharing.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>Catholic Gospel Sharing</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">✝</div>
+    <div>
+      <p class="eyebrow">CATHOLIC GOSPEL SHARING</p>
+      <h1>Pray. Listen. Share. Live the Word.</h1>
+    </div>
+  </header>
+
+  <main>
+    <section id="home-view" class="view active" aria-labelledby="welcome-title">
+      <div class="hero">
+        <div class="hero-art">
+          <img src="assets/crucifix_open_bible_lectern.jpg"
+               alt="Catholic crucifix with Christ above an open Bible resting on a wooden lectern">
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow">WELCOME</p>
+          <h2 id="welcome-title">Gather around the Word</h2>
+          <p>A simple guide to praying, listening to God's Word and sharing it in community.</p>
+        </div>
+      </div>
+
+      <section class="sunday-panel">
+        <div>
+          <p class="eyebrow">THIS SUNDAY</p>
+          <h2 id="sunday-title">Sunday Readings</h2>
+          <p id="sunday-summary">Loading the upcoming Sunday readings…</p>
+        </div>
+        <button class="button button-gold" data-open="readings">Open Sunday Readings</button>
+      </section>
+
+      <div class="home-grid">
+        <button class="nav-card" data-open="steps">
+          <span class="card-icon">📖</span>
+          <strong>Seven Steps</strong>
+          <span>Follow the Gospel sharing guide</span>
+          <span class="card-arrow">Explore →</span>
+        </button>
+        <button class="nav-card" data-open="evaluation">
+          <span class="card-icon">✓</span>
+          <strong>Self-Evaluation</strong>
+          <span>Reflect after your sharing session</span>
+          <span class="card-arrow">Review →</span>
+        </button>
+        <button class="nav-card" data-open="readings">
+          <span class="card-icon">🗓</span>
+          <strong>Sunday Readings</strong>
+          <span>Find the readings for a Sunday</span>
+          <span class="card-arrow">View →</span>
+        </button>
+      </div>
+      <button class="reflections-home-link" data-open="reflections">✦ Sunday Reflections <span>Read the latest published reflections →</span></button>
+      <p class="footer-motto">“Your word is a lamp to guide me” — Cf. Psalm 119:105</p>
+      <p class="creator-credit">Created by <strong>Ngube Marcellus Ngupe</strong></p>
+      <button class="back-link about-link" data-open="about">About the App &amp; Creator</button>
+    </section>
+
+    <section id="steps-view" class="view" aria-labelledby="steps-heading">
+      <button class="back-link" data-open="home">← Home</button>
+      <p class="eyebrow">GOSPEL SHARING GUIDE</p>
+      <h2 id="steps-heading">The Seven Steps of Gospel Sharing</h2>
+      <p class="intro">Use these steps as a guide for your group sharing session.</p>
+      <div id="steps-list" class="content-list"></div>
+    </section>
+
+    <section id="evaluation-view" class="view" aria-labelledby="evaluation-heading">
+      <button class="back-link" data-open="home">← Home</button>
+      <p class="eyebrow">AFTER THE SESSION</p>
+      <h2 id="evaluation-heading">Self-Evaluation Scheme</h2>
+      <p class="intro">Review the session together and consider how the group can improve.</p>
+      <div id="evaluation-list" class="content-list"></div>
+      <p class="closing-note" id="evaluation-closing"></p>
+    </section>
+
+    <section id="about-view" class="view" aria-labelledby="about-heading">
+      <button class="back-link" data-open="home">← Home</button>
+      <p class="eyebrow">ABOUT THIS PROJECT</p>
+      <h2 id="about-heading">About Catholic Gospel Sharing</h2>
+      <div class="content-card">
+        <h3>Created and developed by</h3>
+        <p><strong>NGUBE MARCELLUS NGUPE</strong></p>
+        <p>A Catholic initiative designed to support prayerful reflection and meaningful sharing of the Sunday Gospel.</p>
+        <p>This app brings together the Seven Steps of Gospel Sharing, a Self-Evaluation Scheme and Sunday Scripture references in one accessible guide.</p>
+        <p><strong>For further enquiries, contact the app designer at <a href="mailto:ngupemars20@gmail.com">ngupemars20@gmail.com</a>.</strong></p>
+      </div>
+      <p class="small-note">The app is intended as a guide for personal and group Gospel sharing.</p>
+    </section>
+
+
+    <section id="reflections-view" class="view" aria-labelledby="reflections-heading">
+      <button class="back-link" data-open="home">← Home</button>
+      <p class="eyebrow">GROWING IN THE WORD</p>
+      <h2 id="reflections-heading">Sunday Reflections</h2>
+      <p class="intro">Read reflections prepared for the Sunday liturgy. Downloaded reflections remain available when you are offline.</p>
+      <div class="reflection-toolbar">
+        <span id="reflection-sync-status" class="sync-status" aria-live="polite">Checking for saved reflections…</span>
+        <button id="refresh-reflections" class="button button-gold" type="button">Refresh</button>
+      </div>
+      <div id="reflections-list" class="content-list">
+        <article class="content-card"><p>Loading saved reflections…</p></article>
+      </div>
+      <p class="small-note">When connected to the internet, tap Refresh to check for newly published reflections. Previously downloaded reflections remain available offline.</p>
+    </section>
+
+    <section id="readings-view" class="view" aria-labelledby="readings-heading">
+      <button class="back-link" data-open="home">← Home</button>
+      <p class="eyebrow">THE SUNDAY LITURGY</p>
+      <h2 id="readings-heading">Sunday Readings</h2>
+      <label class="date-label" for="sunday-date">Choose a Sunday</label>
+      <input type="date" id="sunday-date">
+      <div id="reading-result" class="reading-card">
+        <h3>Loading Sunday readings…</h3>
+      </div>
+      <p class="small-note">The app selects the upcoming Sunday from Monday 00:00 through Sunday, using your phone's local time. Only Sunday readings are shown here.</p>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <button class="bottom-item selected" data-open="home"><span>⌂</span>Home</button>
+    <button class="bottom-item" data-open="steps"><span>📖</span>Steps</button>
+    <button class="bottom-item" data-open="readings"><span>🗓</span>Sundays</button>
+    <button class="bottom-item" data-open="evaluation"><span>✓</span>Evaluate</button>
+  </nav>
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+    }
+  </script>
+</body>
+</html>

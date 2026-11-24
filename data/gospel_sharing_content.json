@@ -1,0 +1,143 @@
+{
+  "title": "The Seven Steps of Gospel Sharing",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Invite",
+      "subtitle": "(Opening prayer)",
+      "points": [
+        "We remind ourselves that the Risen Lord is with us. Would someone please, invite Jesus in a prayer and welcome him."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Read",
+      "subtitle": "(We need the Biblical Text)",
+      "points": [
+        "Let us open our Bibles to .... Chapter ....",
+        "(When all have found the place)",
+        "Would someone please read verses ....",
+        "Would someone please read the same text again.",
+        "(Groups may find it helpful to read it in pidgin after reading it in English.)"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "View with Wonder",
+      "points": [
+        "Let us take time to pick out words or short phrases, read them aloud prayerfully and repeat them three times."
+      ],
+      "note": "(The silence after each repetition should be long enough for us to repeat the same word once or twice in our hearts.)",
+      "afterwards": "Will someone, please, read the same text again (if possible from a different version)."
+    },
+    {
+      "number": 4,
+      "title": "Listen",
+      "points": [
+        "We keep silence for… minutes and allow God to speak to us."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Share",
+      "points": [
+        "What has touched us personally? We share only what has touched us personally.",
+        "We do not discuss any contribution."
+      ],
+      "afterwards_intro": "(Afterwards, the group may choose a Word of Life:)",
+      "afterwards": "Which word from the text shall we choose as our Word of Life for the coming week?"
+    },
+    {
+      "number": 6,
+      "title": "Plan for Action",
+      "points": [
+        "Now we discuss any task which our group is called to do in our neighbourhood or Parish.",
+        "Report on the previous tasks.",
+        "What new tasks need to be done?",
+        "WHO will do WHAT and WHEN?",
+        "Reports from Commissions and Councils."
+      ],
+      "note": "(Here we may also share some examples of how we have applied the Word of Life in certain situations of daily life.)"
+    },
+    {
+      "number": 7,
+      "title": "Pray",
+      "subtitle": "(Concluding the prayer session)",
+      "points": [
+        "Anyone who wishes may pray spontaneously."
+      ],
+      "afterwards_intro": "(Afterwards:)",
+      "afterwards": "We end with a prayer or hymn which everyone knows."
+    }
+  ],
+  "self_evaluation_title": "Self-Evaluation Scheme",
+  "self_evaluation_general": [
+    "Was there a spirit of prayer?",
+    "Was there anything which disturbed or destroyed the spirit of prayer?"
+  ],
+  "self_evaluation": [
+    {
+      "label": "a)",
+      "step": 1,
+      "questions": [
+        "Was the prayer addressed directly to Jesus?",
+        "Was it long or short?"
+      ]
+    },
+    {
+      "label": "b)",
+      "step": 2,
+      "questions": [
+        "Did everybody find the text before it was read?",
+        "Was the reader audible (loud enough to be heard)?"
+      ]
+    },
+    {
+      "label": "c)",
+      "step": 3,
+      "questions": [
+        "Did we allow a time of silence in between the words we were picking out?",
+        "Did we read them aloud in a prayerful way?",
+        "Were there any unnecessarily long phrases?"
+      ]
+    },
+    {
+      "label": "d)",
+      "step": 4,
+      "questions": [
+        "Was the time of silence too short or too long?"
+      ]
+    },
+    {
+      "label": "e)",
+      "step": 5,
+      "questions": [
+        "Was there real personal sharing or preaching to others?"
+      ]
+    },
+    {
+      "label": "f)",
+      "step": 6,
+      "questions": [
+        "Did we carry out our tasks?",
+        "Did we allow the spirit of God’s word to guide our discussions on our tasks?"
+      ]
+    },
+    {
+      "label": "g)",
+      "step": 7,
+      "questions": [
+        "Did we allow enough time for everybody to pray spontaneously?"
+      ]
+    },
+    {
+      "label": "h)",
+      "step": null,
+      "questions": [
+        "What did our facilitator do well?",
+        "What can he/she still improve?"
+      ]
+    }
+  ],
+  "closing_note": "Self-evaluation after a gospel sharing session will help a group to improve the practical use of the 7-steps."
+}
