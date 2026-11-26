@@ -105,6 +105,126 @@ function showReadingsForDate(value){
 // The Apps Script endpoint must support JSONP (callback=...) for cross-origin browser access.
 const REFLECTIONS_API_URL = "https://script.google.com/macros/s/AKfycbzSzJuvLV6NLuNZrCblHk9JJH2WjlM7w_olaVLCbaehjMeokivzQNZP12NEWlUC3Tq7ow/exec";
 const REFLECTIONS_CACHE_KEY = "gospel_sharing_published_reflections_v1";
+const REFLECTION_VIEWS_QUEUE_KEY = "gospel_sharing_view_queue_v1";
+const REFLECTION_DEVICE_KEY = "gospel_sharing_device_id_v1";
+const REFLECTION_VIEWED_SESSION_KEY = "gospel_sharing_viewed_session_v1";
+
+function makeAnonymousId(){
+  if(window.crypto && typeof window.crypto.randomUUID === "function"){
+    return window.crypto.randomUUID().replace(/-/g, "");
+  }
+  return "gs" + Date.now().toString(36) + Math.random().toString(36).slice(2) +
+    Math.random().toString(36).slice(2);
+}
+function getAnonymousDeviceId(){
+  let id = localStorage.getItem(REFLECTION_DEVICE_KEY);
+  if(!id){
+    id = makeAnonymousId();
+    localStorage.setItem(REFLECTION_DEVICE_KEY, id);
+  }
+  return id;
+}
+function getViewedThisSession(){
+  try {
+    const value = JSON.parse(sessionStorage.getItem(REFLECTION_VIEWED_SESSION_KEY) || "[]");
+    return Array.isArray(value) ? value : [];
+  } catch (_) { return []; }
+}
+function queueReflectionView(reflectionId){
+  reflectionId = String(reflectionId || "");
+  if(!reflectionId) return;
+  const viewed = getViewedThisSession();
+  if(viewed.includes(reflectionId)) return;
+  viewed.push(reflectionId);
+  sessionStorage.setItem(REFLECTION_VIEWED_SESSION_KEY, JSON.stringify(viewed));
+
+  let queue = [];
+  try {
+    queue = JSON.parse(localStorage.getItem(REFLECTION_VIEWS_QUEUE_KEY) || "[]");
+    if(!Array.isArray(queue)) queue = [];
+  } catch (_) { queue = []; }
+  queue.push({ eventId: makeAnonymousId(), reflectionId, deviceId: getAnonymousDeviceId() });
+  localStorage.setItem(REFLECTION_VIEWS_QUEUE_KEY, JSON.stringify(queue));
+  syncReflectionViewQueue();
+}
+let reflectionViewSyncRunning = false;
+function syncReflectionViewQueue(){
+  if(!navigator.onLine || reflectionViewSyncRunning) return;
+  let queue = [];
+  try {
+    queue = JSON.parse(localStorage.getItem(REFLECTION_VIEWS_QUEUE_KEY) || "[]");
+    if(!Array.isArray(queue)) queue = [];
+  } catch (_) { queue = []; }
+  if(!queue.length) return;
+
+  reflectionViewSyncRunning = true;
+  const event = queue[0];
+  const callbackName = "gospelViewCallback_" + Date.now();
+  const script = document.createElement("script");
+  let finished = false;
+  const timeout = setTimeout(() => finish(false), 15000);
+
+  function finish(success){
+    if(finished) return;
+    finished = true;
+    clearTimeout(timeout);
+    if(script.parentNode) script.remove();
+    try { delete window[callbackName]; } catch (_) { window[callbackName] = undefined; }
+    if(success){
+      let latest = [];
+      try {
+        latest = JSON.parse(localStorage.getItem(REFLECTION_VIEWS_QUEUE_KEY) || "[]");
+        if(!Array.isArray(latest)) latest = [];
+      } catch (_) { latest = []; }
+      latest = latest.filter(item => item.eventId !== event.eventId);
+      localStorage.setItem(REFLECTION_VIEWS_QUEUE_KEY, JSON.stringify(latest));
+    }
+    reflectionViewSyncRunning = false;
+    if(success) syncReflectionViewQueue();
+  }
+
+  window[callbackName] = result => finish(!!(result && result.success));
+  const params = new URLSearchParams({
+    action: "trackView", eventId: event.eventId,
+    reflectionId: event.reflectionId, deviceId: event.deviceId,
+    callback: callbackName
+  });
+  script.src = REFLECTIONS_API_URL + "?" + params.toString();
+  script.onerror = () => finish(false);
+  document.head.appendChild(script);
+}
+
+function observeReflectionCards(root){
+  const cards = root.querySelectorAll(".reflection-card[data-reflection-id]");
+  if(!cards.length) return;
+  if(!("IntersectionObserver" in window)){
+    const checkVisible = () => {
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      cards.forEach(card => {
+        if(card.getAttribute("data-view-checked") === "1") return;
+        const rect = card.getBoundingClientRect();
+        const visible = Math.max(0, Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0));
+        if(rect.height > 0 && visible / rect.height >= 0.35){
+          card.setAttribute("data-view-checked", "1");
+          queueReflectionView(card.getAttribute("data-reflection-id"));
+        }
+      });
+    };
+    checkVisible();
+    window.addEventListener("scroll", checkVisible, { passive: true });
+    window.addEventListener("resize", checkVisible);
+    return;
+  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting && entry.intersectionRatio >= 0.35){
+        queueReflectionView(entry.target.getAttribute("data-reflection-id"));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: [0.35] });
+  cards.forEach(card => observer.observe(card));
+}
 
 function getSavedReflections(){
   try {
@@ -207,6 +327,7 @@ function renderReflections(items, statusText, allMedia){
     });
   }
 
+  observeReflectionCards(root);
   const status = document.getElementById("reflection-sync-status");
   if(status) status.textContent = statusText || (published.length ? `${published.length} saved reflection(s)` : "No saved reflections");
 }
@@ -276,5 +397,7 @@ function init(){
   if(refreshButton) refreshButton.addEventListener("click",refreshReflections);
   if(navigator.onLine) refreshReflections();
   window.addEventListener("online",refreshReflections);
+  window.addEventListener("online",syncReflectionViewQueue);
+  syncReflectionViewQueue();
 }
 document.addEventListener("DOMContentLoaded",init);
