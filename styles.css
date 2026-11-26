@@ -120,3 +120,305 @@ main{width:calc(100% - 24px);max-width:464px;margin:0 auto;padding:11px 0 24px}
   background: #000;
   border-radius: 12px;
 }
+
+
+
+/* =========================================================
+   GOSPEL SHARING – RESPONSIVE READING & HOME SCREEN UPDATE
+   Keeps the existing colour theme and app components.
+   ========================================================= */
+
+/* Give all app sections the available screen width. */
+main {
+  width: calc(100% - 40px);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 22px 0 36px;
+}
+
+/* Home screen: restore comfortable, readable sizing. */
+.hero {
+  width: 100%;
+  border-radius: 18px;
+}
+
+.hero-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-copy {
+  padding: 22px 24px 24px;
+}
+
+.hero-copy .eyebrow,
+.sunday-panel .eyebrow {
+  font-size: 11px;
+  letter-spacing: 1.2px;
+}
+
+.hero-copy h2 {
+  font-size: clamp(25px, 3.5vw, 36px);
+  line-height: 1.2;
+  margin: 8px 0;
+}
+
+.hero-copy p:last-child {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.sunday-panel {
+  margin-top: 16px;
+  padding: 22px 24px;
+  min-height: 0;
+  border-radius: 14px;
+  gap: 18px;
+}
+
+.sunday-panel h2 {
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.25;
+}
+
+.sunday-panel p:not(.eyebrow) {
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.sunday-panel .button-gold {
+  font-size: 14px;
+  padding: 13px 18px;
+  border-radius: 9px;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.nav-card {
+  min-width: 0;
+  min-height: 155px;
+  padding: 17px;
+  gap: 9px;
+  border-radius: 13px;
+}
+
+.card-icon {
+  font-size: 25px;
+}
+
+.nav-card strong {
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.nav-card > span:not(.card-icon):not(.card-arrow) {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.card-arrow {
+  font-size: 13px;
+}
+
+.reflections-home-link {
+  margin-top: 14px;
+  padding: 15px 17px;
+  font-size: 16px;
+  gap: 7px;
+}
+
+.reflections-home-link span {
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.footer-motto {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 22px 0 8px;
+}
+
+.creator-credit {
+  font-size: 13px;
+}
+
+.about-link {
+  font-size: 13px;
+}
+
+/* Sunday Reflections: use the full available reading width. */
+#reflections-view {
+  width: 100%;
+  max-width: none;
+}
+
+#reflections-view .intro {
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+#reflections-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  max-width: none;
+}
+
+#reflections-list > *,
+#reflections-list .reflection-card,
+#reflections-list .content-card {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+
+.reflection-card,
+#reflections-list .content-card {
+  padding: 20px 22px;
+}
+
+.reflection-card h3,
+#reflections-list .content-card h3 {
+  font-size: 21px;
+  line-height: 1.35;
+}
+
+.reflection-scripture {
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.reflection-body {
+  display: block;
+  width: 100%;
+  max-width: none;
+  font-size: 16px;
+  line-height: 1.8 !important;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  text-align: left;
+}
+
+#reflections-list p {
+  font-size: 16px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.reflection-media {
+  width: 100%;
+  max-width: 100%;
+}
+
+.reflection-image,
+.reflection-media audio,
+.reflection-media video {
+  max-width: 100%;
+}
+
+/* Keep other reading and content sections comfortable too. */
+.content-card,
+.reading-card {
+  width: 100%;
+  max-width: none;
+}
+
+.content-card p,
+.content-card li,
+.reading-card {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* Tablet and phone layouts. */
+@media (max-width: 700px) {
+  main {
+    width: calc(100% - 28px);
+    padding: 14px 0 28px;
+  }
+
+  .home-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .nav-card {
+    min-height: 135px;
+    padding: 13px;
+  }
+
+  .sunday-panel {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .sunday-panel .button-gold {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  main {
+    width: calc(100% - 24px);
+  }
+
+  .hero-copy {
+    padding: 17px 16px 18px;
+  }
+
+  .hero-copy h2 {
+    font-size: 25px;
+  }
+
+  .hero-copy p:last-child {
+    font-size: 15px;
+  }
+
+  .home-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .nav-card {
+    min-height: 130px;
+    padding: 11px;
+  }
+
+  .nav-card strong {
+    font-size: 16px;
+  }
+
+  .nav-card > span:not(.card-icon):not(.card-arrow) {
+    font-size: 12px;
+  }
+
+  .reflection-card,
+  #reflections-list .content-card {
+    padding: 16px;
+  }
+
+  .reflection-body,
+  #reflections-list p {
+    font-size: 16px;
+    line-height: 1.75 !important;
+  }
+
+  .reflection-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .reflection-toolbar .button {
+    width: 100%;
+  }
+}
